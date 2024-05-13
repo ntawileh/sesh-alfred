@@ -39,4 +39,4 @@ echo -n "https://github.com/ntawileh/${workflow_name}/releases/download/${nextVe
 git add --all &&
 	git commit -m "release: $nextVersion" &&
 	git pull && git push &&
-	git tag "$nextVersion" && git push origin --tags # trigger the release action
+	git tag "v$nextVersion" && git push origin --tags # trigger the release action
