@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>io.park5.alfred-sesh</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>7D0C7A0A-0B0D-4720-AAFD-00087027910F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>FFE224BB-22F4-475D-9DDE-33F3B173CA00</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>9AE7ECC1-0148-42DD-BBC0-525F24BB7322</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D8448A5C-703F-4807-B018-17BCCE30AE28</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A5CA346E-CD03-4B47-B352-0C94EB43797C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D8448A5C-703F-4807-B018-17BCCE30AE28</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D8448A5C-703F-4807-B018-17BCCE30AE28</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>7D0C7A0A-0B0D-4720-AAFD-00087027910F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>ntawileh</string>
+	<key>description</key>
+	<string>interact with sesh</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>sesh-alfred</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>0</integer>
+				<key>argument</key>
+				<integer>0</integer>
+				<key>focusedappvariable</key>
+				<false/>
+				<key>focusedappvariablename</key>
+				<string></string>
+				<key>hotkey</key>
+				<integer>0</integer>
+				<key>hotmod</key>
+				<integer>1179648</integer>
+				<key>hotstring</key>
+				<string>A</string>
+				<key>leftcursor</key>
+				<false/>
+				<key>modsmode</key>
+				<integer>0</integer>
+				<key>relatedAppsMode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>9AE7ECC1-0148-42DD-BBC0-525F24BB7322</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>searching sessions...</string>
+				<key>script</key>
+				<string>sesh list -ctzj | jq '
+[
+.[] 
+| .["title"] = .Name | .["subtitle"] = .Src | .["uid"] = .Name | .["arg"] = .Name | .["match"] = (.Name + " " + .Path ) |  del(.Name)] 
+| [.[] | .match |= gsub("/";" ") 
+]  
+| [.[] | .subtitle = (if .Src == "zoxide" then (.Src+" "+( .Score|floor|tostring)) else .Src end)] | [.[] | .subtitle = (if .Attached &gt;= 1 then (.subtitle+" (attached)") else .subtitle end)] | [.[] | .icon = {
+    "type": "fileicon",
+    "path": .Path
+}] 
+| [.[] | .icon = ( if .Src == "config" then ({
+    "path": "./cog.svg"
+}) else .icon end) ]
+
+| [.[] | .icon = ( if .Src == "tmux" then ({
+    "path": "./tmux.svg"
+}) else .icon end) ]
+
+
+|   {"items": .}'</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>query current tmux sessions via sesh</string>
+				<key>title</key>
+				<string>sesh list</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D8448A5C-703F-4807-B018-17BCCE30AE28</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>sesh</string>
+				<key>subtext</key>
+				<string>query tmux sessions using sesh</string>
+				<key>text</key>
+				<string>sesh list</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>A5CA346E-CD03-4B47-B352-0C94EB43797C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>open -a "$app"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>FFE224BB-22F4-475D-9DDE-33F3B173CA00</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/local/bin/sesh connect --switch "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7D0C7A0A-0B0D-4720-AAFD-00087027910F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string># Sesh + Alfred
+
+![](icon.png)
+
+This workflow gives Alfred the ability to interact with [sesh](https://github.com/joshmedeski/sesh)
+
+You need to have sesh installed first, along with any sesh installation requirements
+
+By default, this workflow will activate the Terminal app, but you can configure that to any other terminal you use.</string>
+	<key>uidata</key>
+	<dict>
+		<key>7D0C7A0A-0B0D-4720-AAFD-00087027910F</key>
+		<dict>
+			<key>xpos</key>
+			<real>710</real>
+			<key>ypos</key>
+			<real>325</real>
+		</dict>
+		<key>9AE7ECC1-0148-42DD-BBC0-525F24BB7322</key>
+		<dict>
+			<key>xpos</key>
+			<real>180</real>
+			<key>ypos</key>
+			<real>135</real>
+		</dict>
+		<key>A5CA346E-CD03-4B47-B352-0C94EB43797C</key>
+		<dict>
+			<key>note</key>
+			<string>Type your keyword into Alfred to trigger this workflow.</string>
+			<key>xpos</key>
+			<real>185</real>
+			<key>ypos</key>
+			<real>320</real>
+		</dict>
+		<key>D8448A5C-703F-4807-B018-17BCCE30AE28</key>
+		<dict>
+			<key>xpos</key>
+			<real>440</real>
+			<key>ypos</key>
+			<real>175</real>
+		</dict>
+		<key>FFE224BB-22F4-475D-9DDE-33F3B173CA00</key>
+		<dict>
+			<key>xpos</key>
+			<real>930</real>
+			<key>ypos</key>
+			<real>325</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>terminal</string>
+				<key>placeholder</key>
+				<string>terminal</string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>The name of the terminal application to use. [Default: terminal]</string>
+			<key>label</key>
+			<string>Terminal Application</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>app</string>
+		</dict>
+	</array>
+	<key>version</key>
+	<string>0.1.0</string>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
