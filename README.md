@@ -1,9 +1,9 @@
 #
 
 ![Download count](https://img.shields.io/github/downloads/ntawileh/sesh-alfred/total?label=Total%20Downloads&style=plastic)
-![version number](https://img.shields.io/github/v/release/ntawileh/sesh-alfred/?label=Latest%20Release&style=plastic)
+![version number](https://img.shields.io/github/v/release/ntawileh/sesh-alfred?label=Latest%20Release&style=plastic)
 
-![](./icon.png)
+![](./assets/sesh-alfred.png)
 
 [Alfred](https://www.alfredapp.com/) workflow for Sesh, the smart terminal session manager https://github.com/joshmedeski/sesh
 
@@ -16,6 +16,3 @@
 ## Installation
 
 [➡️ Download the latest release.](https://github.com///github.com/ntawileh/sesh-alfred/releases/latest)
-
-When admitted to the Alfred Gallery, the workflow auto-updates via Alfred's
-workflow-update mechanism.
