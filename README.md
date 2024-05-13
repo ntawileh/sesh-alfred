@@ -5,7 +5,7 @@
 
 ![](./assets/sesh-alfred.png)
 
-[Alfred](https://www.alfredapp.com/) workflow for Sesh, the smart terminal session manager https://github.com/joshmedeski/sesh
+[Alfred](https://www.alfredapp.com/) workflow for sesh, the smart terminal session manager https://github.com/joshmedeski/sesh
 
 ## Usage
 
