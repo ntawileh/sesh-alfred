@@ -15,4 +15,4 @@
 
 ## Installation
 
-[➡️ Download the latest release.](https://github.com///github.com/ntawileh/sesh-alfred/releases/latest)
+[➡️ Download the latest release.](https://github.com/ntawileh/sesh-alfred/releases/latest)
