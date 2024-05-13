@@ -108,7 +108,7 @@
 				<key>alfredfiltersresults</key>
 				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
-				<integer>0</integer>
+				<integer>2</integer>
 				<key>argumenttreatemptyqueryasnil</key>
 				<true/>
 				<key>argumenttrimmode</key>
@@ -128,7 +128,10 @@
 				<key>runningsubtext</key>
 				<string>searching sessions...</string>
 				<key>script</key>
-				<string>sesh list -ctzj | jq '
+				<string>if ! (tmux ls &gt; /dev/null 2&gt;&amp;1); then
+    echo '{"items":[{"uid": "", "title": "is tmux running?", "subtitle": "please run tmux before using this extension" }]}'
+else
+	sesh list -ctzj | jq '
 [
 .[] 
 | .["title"] = .Name | .["subtitle"] = .Src | .["uid"] = .Name | .["arg"] = .Name | .["match"] = (.Name + " " + .Path ) |  del(.Name)] 
@@ -147,7 +150,8 @@
 }) else .icon end) ]
 
 
-|   {"items": .}'</string>
+|   {"items": .}'
+fi</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -171,23 +175,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>2</integer>
-				<key>keyword</key>
-				<string>sesh</string>
-				<key>subtext</key>
-				<string>query tmux sessions using sesh</string>
-				<key>text</key>
-				<string>sesh list</string>
-				<key>withspace</key>
+				<key>concurrently</key>
 				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>/usr/local/bin/sesh connect --switch "{query}"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>11</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>A5CA346E-CD03-4B47-B352-0C94EB43797C</string>
+			<string>7D0C7A0A-0B0D-4720-AAFD-00087027910F</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -215,25 +221,23 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>concurrently</key>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>sesh</string>
+				<key>subtext</key>
+				<string>query tmux sessions using sesh</string>
+				<key>text</key>
+				<string>sesh list</string>
+				<key>withspace</key>
 				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>/usr/local/bin/sesh connect --switch "{query}"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>11</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.script</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>7D0C7A0A-0B0D-4720-AAFD-00087027910F</string>
+			<string>A5CA346E-CD03-4B47-B352-0C94EB43797C</string>
 			<key>version</key>
-			<integer>2</integer>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -258,18 +262,18 @@ By default, this workflow will activate the Terminal app, but you can configure 
 		<key>9AE7ECC1-0148-42DD-BBC0-525F24BB7322</key>
 		<dict>
 			<key>xpos</key>
-			<real>180</real>
+			<real>115</real>
 			<key>ypos</key>
-			<real>135</real>
+			<real>120</real>
 		</dict>
 		<key>A5CA346E-CD03-4B47-B352-0C94EB43797C</key>
 		<dict>
 			<key>note</key>
 			<string>Type your keyword into Alfred to trigger this workflow.</string>
 			<key>xpos</key>
-			<real>185</real>
+			<real>115</real>
 			<key>ypos</key>
-			<real>320</real>
+			<real>405</real>
 		</dict>
 		<key>D8448A5C-703F-4807-B018-17BCCE30AE28</key>
 		<dict>
