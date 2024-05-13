@@ -311,7 +311,7 @@ By default, this workflow will activate the Terminal app, but you can configure 
 		</dict>
 	</array>
 	<key>version</key>
-	<string>0.1.0</string>
+	<string>0.1.1</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
