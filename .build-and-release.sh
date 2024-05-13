@@ -31,7 +31,7 @@ fi
 
 # convenience: copy download link for current version
 workflow_name="$(basename "$PWD")"
-echo -n "https://github.com/chrisgrieser/${workflow_name}/releases/download/${nextVersion}/${workflow_name}.alfredworkflow" |
+echo -n "https://github.com/ntawileh/${workflow_name}/releases/download/${nextVersion}/${workflow_name}.alfredworkflow" |
 	pbcopy
 
 #───────────────────────────────────────────────────────────────────────────────
